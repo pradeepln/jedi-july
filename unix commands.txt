@@ -1,0 +1,286 @@
+Try out and explore unix commands
+
+1. Launch a terminal Window
+
+2. To find out what type of shell you are using:
+
+echo $0
+
+3. To find out your present working directory:
+
+pwd
+
+4. To display the contents of the current directory:
+
+ls
+
+5. To display all details of the contents of the directory:
+
+ls -al
+
+Column-1: This field consists of the permission of the files and directories.
+
+Column -2: This field shows the number of links for that file or directory.
+
+Column -3: This field shows the owner of the file or directory.
+
+Column -4: This field shows the group of the file or directory.
+
+Column -5: This field shows the size of the file or directory in bytes.
+
+Column -6: This field shows the last modified date and time of the file.
+
+Column -7: This field shows the name of the file or directory.
+
+
+6. To switch over to the 'root' directory:
+
+cd /
+
+7. To get system information:
+
+uname -a
+
+8. To go to your user home directory:
+
+cd ~
+Then change to /Documents directory
+cd Doc+Tab
+
+9. To create an empty file called sample.txt:
+
+touch sample.txt
+
+Linux Files Timestamps
+
+A file in Linux has three timestamps:
+
+atime (access time) - The last time the file was accessed/opened by some command or application such as cat , vim or grep .
+mtime (modify time) - The last time the file’s content was modified.
+ctime (change time) - The last time the file’s attribute or content was changed. The attribute includes file permissions, file ownership or file location.
+To display the file status including the timestamps, use the stat command.
+
+stat sample.txt
+
+10. Creating Files
+Creating small files with cat it often easier than opening a text editor.
+
+To create a new file, use the cat command followed by the redirection operator (>) and the name of the file you want to create. Press Enter, type the text and once you are done, press the CRTL+D to save the file.
+
+In the following example, we are creating a new file named file1.txt:
+
+cat > file1.txt
+
+
+If a file named file1.txt is present, it will be overwritten. Use the ‘>>’ operator to append the output to an existing file.
+
+cat >> file1.txt
+
+11. Display the contents of the file
+
+cat file1.txt
+
+Redirect Contents of File
+Instead of displaying the output to stdout (on the screen), you can redirect it to a file.
+
+The following command will copy the contents of file1.txt to file2.txt using the (>) operator :
+
+cat file1.txt > file2.txt
+
+Normally you would use the cp command to copy a file.
+If the file2.txt file doesn’t exist, the command will create it. Otherwise, it will overwrite the file.
+
+Use the (>>) operator to append the contents of file1.txt to file2.txt :
+
+cat file1.txt >> file2.txt
+
+Same as before, if the file is not present, it will be created.
+
+
+
+
+12 How to Use cp command
+The general syntax for the cp command is as follows:
+
+cp [OPTIONS] SOURCE... DESTINATION
+
+The SOURCE can contain one or more files or directories as arguments, and the DESTINATION argument can be a single file or directory.
+
+
+When the SOURCE and DESTINATION arguments are both files, the cp command copies the first file to the second one. If the file doesn’t exist, the command creates it.
+When the SOURCE has multiple files or directories as arguments, the DESTINATION argument must be a directory. In this situation, the SOURCE files and directories are moved to the DESTINATION directory.
+When the SOURCE and DESTINATION arguments are both directories, the cp command copies the first directory into the second one.
+
+
+13. Moving and Renaming
+
+mv stands for move. mv is used to move one or more files or directories from one place to another in a file system like UNIX. It has two distinct functions: 
+(i) It renames a file or folder. 
+(ii) It moves a group of files to a different directory. 
+No additional space is consumed on a disk during renaming. This command normally works silently means no prompt for confirmation. 
+
+Syntax: 
+
+mv [Option] source destination
+
+mv a.txt newa.txt
+
+------------------
+
+
+14. Using Links in Linux
+
+https://www.geeksforgeeks.org/soft-hard-links-unixlinux/
+
+Soft links and hard links
+
+Soft Links are like Windows ShortCuts
+Hard Links are for having copies of large files without dupliucating data on file system.
+
+To try out concept of links:
+
+mkdir subdir
+
+cd subdir
+
+ln ../file1.txt ahardlink
+
+ln -s ../file1.txt softlink
+
+ls -l
+
+cat ahardlink
+
+cat softlink
+
+cd..
+
+mv file1.txt file1moved.txt
+
+cd subdir
+
+cat ahardlink
+
+cat softlink
+
+ls -l
+
+
+--------------
+
+15. Removing Files and Directories
+
+https://linuxize.com/post/rm-command-in-linux/
+
+rm sample.txt
+
+rm -d subdir
+
+---------------------
+
+16. Finding files and directories
+
+https://www.geeksforgeeks.org/find-command-in-linux-with-examples/
+
+The find command in UNIX is a command line utility for walking a file hierarchy. It can be used to find files and directories and perform subsequent operations on them. It supports searching by file, folder, name, creation date, modification date, owner and permissions. By using the ‘-exec’ other UNIX commands can be executed on files or folders found. 
+
+Syntax : 
+
+$ find [where to start searching from]
+ [expression determines what to find] [-options] [what to find]
+
+cd /
+
+find . -name file1.txt
+
+find . -name file1moved.txt
+
+cd ~
+
+---------------------
+17. GREP Command
+
+https://www.geeksforgeeks.org/grep-command-in-unixlinux/
+
+
+
+----------------------
+
+https://www.linode.com/docs/guides/linux-users-and-groups/
+
+18. Read, Write, & Execute Permissions
+Permissions are the “rights” to act on a file or directory. The basic rights are read, write, and execute.
+
+Read: a readable permission allows the contents of the file to be viewed. A read permission on a directory allows you to list the contents of a directory.
+Write: a write permission on a file allows you to modify the contents of that file. For a directory, the write permission allows you to edit the contents of a directory (e.g. add/delete files).
+Execute: for a file, the executable permission allows you to run the file and execute a program or script. For a directory, the execute permission allows you to change to a different directory and make it your current working directory. Users usually have a default group, but they may belong to several additional groups.
+
+ls -l /etc/passwd
+
+-rw-r--r-- 1 root root 1031 Nov 18 09:22 /etc/passwd
+
+
+To list/view all users:
+
+cat /etc/passwd
+
+You can also find a user’s primary group information by using the id command. Replace example_user with one of your own system’s users.
+
+id  example_user
+
+------------------
+19.Adding and removing users
+
+Creating and Deleting User Accounts
+To create a new standard user, use the useradd command. The syntax is as follows:
+
+useradd <someusername>
+
+You need to set a password for the new user by using the passwd command. Note, you need root privileges to change a user password. The syntax is as follows:
+
+passwd <username>
+
+
+To remove a user account, enter the following command:
+
+userdel <name>
+Issuing the command above only deletes the user’s account. Their files and home directory are not be deleted.
+
+To remove the user, their home folder, and their files, use this command:
+
+userdel -r <name>
+
+---------------
+
+20. Chmod Command
+
+The command chmod is short for change mode. Chmod is used to change permissions on files and directories. The command chmod may be used with either letters or numbers (also known as octal) to set the permissions. The letters used with chmod are in the table below:
+
+Letter	Permission
+r	Read
+w	Write
+x	Execute
+X	Execute (only if file is a directory)
+s	Set user or group ID on execution
+t	Save program text on swap device
+u	Current permissions the file has for owner
+g	Current permissions the file has for users in the same group
+o	Current permissions the file has for others not in the group
+
+
+Note that the dash (-) denotes permissions are removed. Therefore, with the “all others” group, r– translates to read permission only, the write and execute permissions were removed.
+
+Conversely, the plus sign (+) is equivalent to granting permissions: 
+
+chmod u+r,g+x <filename>
+
+The example above translates as follows:
+
+u is for user
+r is for read
+g is for group
+x is for execute
+In other words, the user was given read permission and the group was given execute permission for the file. Note, when setting multiple permissions for a set, a comma is required between sets.
+
+
+

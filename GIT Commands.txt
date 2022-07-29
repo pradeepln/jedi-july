@@ -1,0 +1,48 @@
+git version
+
+-will display version info. If command succeeds, it's an indication that git is installed and working
+
+git config --global user.name "My Name"
+git config --global user.email "MyName@myhost.com"
+
+-will set up user info used by git
+
+git init
+
+-will initialize a new empty repository with current folder as the working directory.
+
+git add .
+
+-will add all new(untracked)/modified files and folders into the staging area.
+
+git commit -m "commit msg"
+
+-will commit from staging area into the local repository with specified message
+
+git remote add origin https://github.com/username/repo.git
+
+-will add the remote repo as origin
+
+git push origin master
+
+-will push changes to origin (remote/upstream)
+
+git pull origin master
+
+-will pull changes from origin (remote/upstream)
+
+
+
+
+https://www.perforce.com/downloads/visual-merge-tool
+
+Path for Mac : /Applications/p4merge.app/Contents/MacOS/p4merge
+
+
+git config --global merge.tool p4merge
+git config --global mergetool.p4merge.path "C:/Program Files/Perforce/p4merge.exe"
+git config --global diff.tool p4merge
+git config --global difftool.p4merge.path "C:/Program Files/Perforce/p4merge.exe"
+git config --global difftool.prompt false
+git config --global mergetool.prompt false
+
